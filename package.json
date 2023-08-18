@@ -1,0 +1,64 @@
+{
+  "name": "access-exercise",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@hookform/resolvers": "^3.2.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.18.40",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "concurrently": "^8.2.0",
+    "jsencrypt": "^3.3.2",
+    "primeflex": "^3.3.1",
+    "primeicons": "^6.0.1",
+    "primereact": "^9.6.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.4",
+    "react-relay": "^15.0.0",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1",
+    "relay-runtime": "^15.0.0",
+    "typescript": "^4.9.5",
+    "web-vitals": "^2.1.4",
+    "zod": "^3.22.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "relay-compiler --validate && react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "relay": "relay-compiler",
+    "watch-relay": "relay-compiler --watch",
+    "watch-server": "react-scripts start",
+    "dev": "concurrently npm:watch-* -c auto"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/react-relay": "^14.1.4",
+    "@types/relay-runtime": "^14.1.12",
+    "babel-plugin-relay": "^15.0.0",
+    "relay-compiler": "^15.0.0"
+  }
+}

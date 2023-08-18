@@ -1,0 +1,79 @@
+@use '/src/assets/sass/utils' as u;
+
+.card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 165px;
+  margin-bottom: 72px;
+  width: 492px;
+  background-color: u.$v-white;
+  flex-direction: column;
+}
+
+.card__header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 36.59px;
+  width: 100%;
+  height: 32.41px;
+  background-color: u.$v-primary-color;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-direction: column;
+
+  &::before {
+    position: absolute;
+    left: 13.37px;
+    display: block;
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: u.$v-white;
+    content: '';
+    box-shadow:
+      calc(7.27px * 3) 0 0 0 u.$v-white,
+      calc(7.27px * 6) 0 0 0 u.$v-white;
+  }
+}
+
+.card__title {
+  margin-bottom: 24px;
+  font-weight: u.$v-font-weight-medium;
+  color: u.$v-primary-color;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  width: 400px;
+  flex-direction: column;
+}
+
+.submitButton {
+  z-index: 1;
+  margin: auto;
+  margin-top: 24px;
+  margin-bottom: 138px;
+}
+
+.card::before {
+  position: absolute;
+  top: 5px;
+  right: 13.6px;
+  content: url('/src/assets/images/woman.svg');
+  transform: translateY(-100%);
+
+  // TODO: ??
+  z-index: -1;
+}
+
+.card::after {
+  position: absolute;
+  bottom: 0;
+  left: -87px;
+  content: url('/src/assets/images/man.svg');
+}
