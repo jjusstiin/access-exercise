@@ -1,5 +1,5 @@
 import { Navigate, type RouteObject } from "react-router-dom";
-import LoginPage from "../pages/LoginPage";
+import DetailPage from "../pages/DetailPage";
 import ListPage from "../pages/ListPage";
 
 export const RootRoutes: RouteObject[] = [
@@ -9,7 +9,7 @@ export const RootRoutes: RouteObject[] = [
   },
   {
     path: "login",
-    element: <LoginPage />,
+    element: <DetailPage />,
   },
   {
     path: "*",

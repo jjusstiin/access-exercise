@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<912edba57f7d8c2d025dbc8e1e550254>>
+ * @generated SignedSource<<4e4e598741bee8376c84ca2f7519d01e>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -9,19 +9,19 @@
 // @ts-nocheck
 
 import { ConcreteRequest, Query } from 'relay-runtime';
-export type MergeableState = "CONFLICTING" | "MERGEABLE" | "UNKNOWN" | "%future added value";
-export type ListPageQuery$variables = {};
+import { FragmentRefs } from "relay-runtime";
+export type ListPageQuery$variables = {
+  first?: number | null;
+  query: string;
+};
 export type ListPageQuery$data = {
-  readonly repository: {
-    readonly pullRequests: {
-      readonly edges: ReadonlyArray<{
-        readonly node: {
-          readonly mergeable: MergeableState | null;
-          readonly number: number | null;
-        } | null;
-      } | null> | null;
-    } | null;
-  } | null;
+  readonly search: {
+    readonly edges: ReadonlyArray<{
+      readonly node: {
+        readonly " $fragmentSpreads": FragmentRefs<"ListFragment">;
+      };
+    }>;
+  };
 };
 export type ListPageQuery = {
   response: ListPageQuery$data;
@@ -29,44 +29,65 @@ export type ListPageQuery = {
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = [
+var v0 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "first"
+},
+v1 = {
+  "defaultValue": null,
+  "kind": "LocalArgument",
+  "name": "query"
+},
+v2 = [
   {
-    "alias": null,
-    "args": [
-      {
-        "kind": "Literal",
-        "name": "name",
-        "value": "Hello-World"
-      },
-      {
-        "kind": "Literal",
-        "name": "owner",
-        "value": "octocat"
-      }
+    "kind": "Variable",
+    "name": "first",
+    "variableName": "first"
+  },
+  {
+    "kind": "Variable",
+    "name": "query",
+    "variableName": "query"
+  },
+  {
+    "kind": "Literal",
+    "name": "type",
+    "value": "USER"
+  }
+],
+v3 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "id",
+  "storageKey": null
+},
+v4 = [
+  (v3/*: any*/)
+];
+return {
+  "fragment": {
+    "argumentDefinitions": [
+      (v0/*: any*/),
+      (v1/*: any*/)
     ],
-    "concreteType": "Repository",
-    "kind": "LinkedField",
-    "name": "repository",
-    "plural": false,
+    "kind": "Fragment",
+    "metadata": null,
+    "name": "ListPageQuery",
     "selections": [
       {
         "alias": null,
-        "args": [
-          {
-            "kind": "Literal",
-            "name": "last",
-            "value": 10
-          }
-        ],
-        "concreteType": "PullRequestConnection",
+        "args": (v2/*: any*/),
+        "concreteType": "SearchConnection",
         "kind": "LinkedField",
-        "name": "pullRequests",
+        "name": "search",
         "plural": false,
         "selections": [
           {
             "alias": null,
             "args": null,
-            "concreteType": "PullRequestEdge",
+            "concreteType": "SearchEdge",
             "kind": "LinkedField",
             "name": "edges",
             "plural": true,
@@ -74,24 +95,15 @@ var v0 = [
               {
                 "alias": null,
                 "args": null,
-                "concreteType": "PullRequest",
+                "concreteType": null,
                 "kind": "LinkedField",
                 "name": "node",
                 "plural": false,
                 "selections": [
                   {
-                    "alias": null,
                     "args": null,
-                    "kind": "ScalarField",
-                    "name": "number",
-                    "storageKey": null
-                  },
-                  {
-                    "alias": null,
-                    "args": null,
-                    "kind": "ScalarField",
-                    "name": "mergeable",
-                    "storageKey": null
+                    "kind": "FragmentSpread",
+                    "name": "ListFragment"
                   }
                 ],
                 "storageKey": null
@@ -100,40 +112,126 @@ var v0 = [
             "storageKey": null
           }
         ],
-        "storageKey": "pullRequests(last:10)"
+        "storageKey": null
       }
     ],
-    "storageKey": "repository(name:\"Hello-World\",owner:\"octocat\")"
-  }
-];
-return {
-  "fragment": {
-    "argumentDefinitions": [],
-    "kind": "Fragment",
-    "metadata": null,
-    "name": "ListPageQuery",
-    "selections": (v0/*: any*/),
     "type": "Query",
     "abstractKey": null
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": [
+      (v1/*: any*/),
+      (v0/*: any*/)
+    ],
     "kind": "Operation",
     "name": "ListPageQuery",
-    "selections": (v0/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": (v2/*: any*/),
+        "concreteType": "SearchConnection",
+        "kind": "LinkedField",
+        "name": "search",
+        "plural": false,
+        "selections": [
+          {
+            "alias": null,
+            "args": null,
+            "concreteType": "SearchEdge",
+            "kind": "LinkedField",
+            "name": "edges",
+            "plural": true,
+            "selections": [
+              {
+                "alias": null,
+                "args": null,
+                "concreteType": null,
+                "kind": "LinkedField",
+                "name": "node",
+                "plural": false,
+                "selections": [
+                  {
+                    "alias": null,
+                    "args": null,
+                    "kind": "ScalarField",
+                    "name": "__typename",
+                    "storageKey": null
+                  },
+                  {
+                    "kind": "TypeDiscriminator",
+                    "abstractKey": "__isSearchResultItem"
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "selections": [
+                      (v3/*: any*/),
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "isSiteAdmin",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "avatarUrl",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "login",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "url",
+                        "storageKey": null
+                      }
+                    ],
+                    "type": "User",
+                    "abstractKey": null
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "selections": (v4/*: any*/),
+                    "type": "Organization",
+                    "abstractKey": null
+                  },
+                  {
+                    "kind": "InlineFragment",
+                    "selections": (v4/*: any*/),
+                    "type": "Repository",
+                    "abstractKey": null
+                  }
+                ],
+                "storageKey": null
+              }
+            ],
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
-    "cacheID": "736695cd23ca0098b7c1bab7cb5d4ac5",
+    "cacheID": "c721edca454d913b4df72eaef5dcf7b2",
     "id": null,
     "metadata": {},
     "name": "ListPageQuery",
     "operationKind": "query",
-    "text": "query ListPageQuery {\n  repository(owner: \"octocat\", name: \"Hello-World\") {\n    pullRequests(last: 10) {\n      edges {\n        node {\n          number\n          mergeable\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query ListPageQuery(\n  $query: String!\n  $first: Int\n) {\n  search(query: $query, type: USER, first: $first) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n\nfragment ListFragment on SearchResultItem {\n  __isSearchResultItem: __typename\n  ... on User {\n    id\n    isSiteAdmin\n    avatarUrl\n    login\n    url\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "415fb43800fa758224567e21d18eb55c";
+(node as any).hash = "feb5e7c91964692da1612687adba175f";
 
 export default node;

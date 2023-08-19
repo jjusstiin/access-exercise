@@ -1,0 +1,30 @@
+.page-card{
+  margin-bottom: 10px;
+  cursor: pointer;
+  &:hover{
+    outline: 1px solid bisque;
+  }
+  &[class~='p-card'] {
+    [class~='p-card-content'] {
+      padding: 0;
+    }
+  }
+}
+
+.list {
+  &__image {
+    width: 60px;
+    height: 60px;
+    border-radius: 60px;
+    overflow: hidden;
+    border: 1px solid #fff;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+  }
+  &__login {
+    font-size: larger;
+    font-weight:600;
+    margin:0px 5px 8px;
+  }
+}
+
+

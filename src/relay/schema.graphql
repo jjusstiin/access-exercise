@@ -1,0 +1,38 @@
+type User {
+  id: ID!
+  isSiteAdmin: Boolean!
+  avatarUrl: String
+  login: String!
+  url: String
+}
+
+type Repository {
+  id: ID!
+  name: String
+}
+
+type Organization {
+  id: ID!
+  email: String
+}
+
+union SearchResultItem = User | Repository | Organization
+
+type SearchEdge {
+  node: SearchResultItem!
+}
+
+type SearchConnection {
+  edges: [SearchEdge!]!
+}
+
+type Query {
+  search(query: String!, type: Type!, first: Int): SearchConnection!
+}
+
+enum Type {
+  ISSUE
+  REPOSITORY
+  USER
+  DISCUSSION
+}

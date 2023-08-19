@@ -4,7 +4,6 @@ import { Button } from "primereact/button";
 import { z } from "zod";
 import { commonStringRegex } from "../../helpers/helper";
 import { useForm } from "react-hook-form";
-import encryptionUtil from "../../utils/encryption-util";
 
 const FormSchema = z.object({
   userId: z
@@ -27,7 +26,7 @@ const FormSchema = z.object({
 
 type FormSchemaType = z.infer<typeof FormSchema>;
 
-const LoginPage = (): JSX.Element => {
+const DetailPage = (): JSX.Element => {
   const { getValues } = useForm<FormSchemaType>({
     defaultValues: {
       userId: "",
@@ -37,22 +36,8 @@ const LoginPage = (): JSX.Element => {
     resolver: zodResolver(FormSchema),
   });
 
-  /**
-   * submit
-   */
-  function handleSubmit() {
-    const encryptedPwd = encryptionUtil.encrypt(getValues().pwd);
-    console.log(encryptedPwd);
-
-    if (!encryptedPwd) {
-      console.error("encrypt fail");
-
-      return;
-    }
-  }
-
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div className="h-screen w-full flex justify-content-center align-items-center">
         <div className="md:w-5 flex flex-column align-items-s justify-content-center gap-6 py-5">
           <div className="flex flex-wrap justify-content-center align-items-center gap-2">
@@ -79,4 +64,4 @@ const LoginPage = (): JSX.Element => {
   );
 };
 
-export default LoginPage;
+export default DetailPage;

@@ -6,7 +6,7 @@ import {
   FetchFunction,
 } from "relay-runtime";
 
-const HTTP_ENDPOINT = "https://api.github.com";
+const HTTP_ENDPOINT = "https://api.github.com/graphql";
 
 const fetchFn: FetchFunction = async (request, variables) => {
   const resp = await fetch(HTTP_ENDPOINT, {
@@ -15,7 +15,8 @@ const fetchFn: FetchFunction = async (request, variables) => {
       Accept:
         "application/graphql-response+json; charset=utf-8, application/json; charset=utf-8",
       "Content-Type": "application/json",
-      // <-- Additional headers like 'Authorization' would go here
+      Authorization:
+        "bearer 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",
     },
     body: JSON.stringify({
       query: request.text, // <-- The GraphQL document composed by Relay

@@ -1,11 +1,6 @@
-import ListPage from "./pages/ListPage";
+import { RouterProvider } from "react-router-dom";
+import routes from "./routes/index";
 
-function App() {
-  return (
-    <div>
-      <ListPage />
-    </div>
-  );
+export default function App() {
+  return <RouterProvider router={routes} />;
 }
-
-export default App;

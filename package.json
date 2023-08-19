@@ -8,11 +8,13 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^27.5.2",
+    "@types/lodash-es": "^4.17.8",
     "@types/node": "^16.18.40",
     "@types/react": "^18.2.20",
     "@types/react-dom": "^18.2.7",
+    "clsx": "^2.0.0",
     "concurrently": "^8.2.0",
-    "jsencrypt": "^3.3.2",
+    "lodash-es": "^4.17.21",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primereact": "^9.6.2",
@@ -23,6 +25,7 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "relay-runtime": "^15.0.0",
+    "sass": "^1.66.1",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4",
     "zod": "^3.22.1"
@@ -33,9 +36,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "relay": "relay-compiler",
-    "watch-relay": "relay-compiler --watch",
-    "watch-server": "react-scripts start",
-    "dev": "concurrently npm:watch-* -c auto"
+    "dev-relay": "relay-compiler",
+    "dev-start": "react-scripts start",
+    "dev": "concurrently npm:dev-* -c auto"
   },
   "eslintConfig": {
     "extends": [
