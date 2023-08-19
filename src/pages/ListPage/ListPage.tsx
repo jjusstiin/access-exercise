@@ -6,6 +6,7 @@ import "./ListPage.scss";
 import { KeyboardEvent, useState } from "react";
 import { List } from "../../component";
 import { InputText } from "primereact/inputtext";
+import { Paginator, PaginatorPageChangeEvent } from "primereact/paginator";
 
 const ListPageQuery = graphql`
   query ListPageQuery($query: String!, $first: Int) {
@@ -21,14 +22,22 @@ const ListPageQuery = graphql`
 
 export default function ListPage(): React.ReactElement {
   const [value, setValue] = useState("");
+  const [first, setFirst] = useState(0);
+  const [page, setPage] = useState(0);
+  const [rows, setRows] = useState(20);
   const [query, setQuery] = useState("a");
-  const first = 100;
 
   const data = useLazyLoadQuery<ListPageQueryType>(ListPageQuery, {
     query,
-    first,
+    first: 100,
   });
   const listData = data.search.edges;
+
+  function onPageChange(event: PaginatorPageChangeEvent) {
+    setFirst(event.first);
+    setRows(event.rows);
+    setPage(event.page);
+  }
 
   function handleKeyPress(e: KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
@@ -49,7 +58,13 @@ export default function ListPage(): React.ReactElement {
             onKeyDown={(e) => handleKeyPress(e)}
           />
         </span>
-        {listData.map((list) => (
+        <Paginator
+          first={first}
+          rows={rows}
+          totalRecords={100}
+          onPageChange={onPageChange}
+        />
+        {listData.slice(page * rows, (page + 1) * rows).map((list) => (
           <List key={uniqueId("list")} node={list.node}></List>
         ))}
       </div>
