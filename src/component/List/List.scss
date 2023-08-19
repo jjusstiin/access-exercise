@@ -1,8 +1,10 @@
 .page-card{
   margin-bottom: 10px;
-  cursor: pointer;
-  &:hover{
-    outline: 1px solid bisque;
+  &__available{
+    cursor: pointer;
+    &:hover{
+      outline: 1px solid bisque;
+    }
   }
   &[class~='p-card'] {
     [class~='p-card-content'] {
@@ -24,6 +26,12 @@
     font-size: larger;
     font-weight:600;
     margin:0px 5px 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__unavailable{
+    line-height: 60px;
   }
 }
 

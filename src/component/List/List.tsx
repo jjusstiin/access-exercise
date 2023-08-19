@@ -5,6 +5,8 @@ import { useFragment } from "react-relay";
 import type { ListFragment$key } from "./__generated__/ListFragment.graphql";
 import Admin from "./../Admin/Admin";
 import { Card } from "primereact/card";
+import defaultUserImage from "../../assets/images/default-user-image.png";
+import clsx from "clsx";
 
 const ListFragment = graphql`
   fragment ListFragment on SearchResultItem {
@@ -26,19 +28,25 @@ export default function List({ node }: Props): React.ReactElement {
   const data = useFragment(ListFragment, node);
 
   return (
-    <Card className="page-card">
+    <Card
+      className={clsx("page-card", {
+        "page-card__available": data.login,
+      })}
+    >
       <div className="list flex align-content-center">
         <img
           alt=""
-          src={data.avatarUrl ?? "../assets/images/default-user-image.png"}
+          src={data.avatarUrl ?? defaultUserImage}
           className="list__image"
         />
-        <div className="ml-3">
-          <div className="list__login">
-            {data.login ?? "User Not available "}
+        {data.login ? (
+          <div className="ml-3">
+            <div className="list__login">{data.login}</div>
+            <Admin admin={data.isSiteAdmin}></Admin>
           </div>
-          <Admin admin={data.isSiteAdmin}></Admin>
-        </div>
+        ) : (
+          <div className="list__unavailable ml-3">User Not available</div>
+        )}
       </div>
     </Card>
   );
