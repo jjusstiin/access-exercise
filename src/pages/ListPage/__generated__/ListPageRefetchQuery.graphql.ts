@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<432c5971b6cec7bd5f42fac3259a35d9>>
+ * @generated SignedSource<<94f9bcf12365e8fca41356df6c95d1ce>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -112,10 +112,6 @@ return {
                     "storageKey": null
                   },
                   {
-                    "kind": "TypeDiscriminator",
-                    "abstractKey": "__isSearchResultItem"
-                  },
-                  {
                     "kind": "InlineFragment",
                     "selections": [
                       (v2/*: any*/),
@@ -175,12 +171,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "2608c0dbedb9f3d10e8eadf3deea6434",
+    "cacheID": "3ec2f9c59415b813191199a55a41018e",
     "id": null,
     "metadata": {},
     "name": "ListPageRefetchQuery",
     "operationKind": "query",
-    "text": "query ListPageRefetchQuery(\n  $query: String = \"a\"\n) {\n  ...ListPageFragment_1Qr5xf\n}\n\nfragment ListFragment on SearchResultItem {\n  __isSearchResultItem: __typename\n  ... on User {\n    id\n    isSiteAdmin\n    avatarUrl\n    login\n    url\n  }\n}\n\nfragment ListPageFragment_1Qr5xf on Query {\n  search(query: $query, type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query ListPageRefetchQuery(\n  $query: String = \"a\"\n) {\n  ...ListPageFragment_1Qr5xf\n}\n\nfragment ListFragment on User {\n  id\n  isSiteAdmin\n  avatarUrl\n  login\n  url\n}\n\nfragment ListPageFragment_1Qr5xf on Query {\n  search(query: $query, type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();

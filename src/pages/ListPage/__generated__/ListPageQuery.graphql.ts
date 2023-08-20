@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8af56d85e8dddbf5e75c05c1aa463669>>
+ * @generated SignedSource<<50b61522859386007017d5f1decdc5ab>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -100,10 +100,6 @@ return {
                     "storageKey": null
                   },
                   {
-                    "kind": "TypeDiscriminator",
-                    "abstractKey": "__isSearchResultItem"
-                  },
-                  {
                     "kind": "InlineFragment",
                     "selections": [
                       (v0/*: any*/),
@@ -163,12 +159,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "cdbc75f5c7356ae1f04de1ba3690b4bd",
+    "cacheID": "de76c4363f0055429c507840b33adf24",
     "id": null,
     "metadata": {},
     "name": "ListPageQuery",
     "operationKind": "query",
-    "text": "query ListPageQuery {\n  ...ListPageFragment\n}\n\nfragment ListFragment on SearchResultItem {\n  __isSearchResultItem: __typename\n  ... on User {\n    id\n    isSiteAdmin\n    avatarUrl\n    login\n    url\n  }\n}\n\nfragment ListPageFragment on Query {\n  search(query: \"a\", type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query ListPageQuery {\n  ...ListPageFragment\n}\n\nfragment ListFragment on User {\n  id\n  isSiteAdmin\n  avatarUrl\n  login\n  url\n}\n\nfragment ListPageFragment on Query {\n  search(query: \"a\", type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();

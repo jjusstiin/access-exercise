@@ -9,14 +9,12 @@ import defaultUserImage from "../../assets/images/default-user-image.png";
 import clsx from "clsx";
 
 const ListFragment = graphql`
-  fragment ListFragment on SearchResultItem {
-    ... on User {
-      id
-      isSiteAdmin
-      avatarUrl
-      login
-      url
-    }
+  fragment ListFragment on User {
+    id
+    isSiteAdmin
+    avatarUrl
+    login
+    url
   }
 `;
 

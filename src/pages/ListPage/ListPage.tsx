@@ -32,7 +32,6 @@ const ListPageFragment = graphql`
 
 export default function ListPage(): React.ReactElement {
   const [isPending, startTransition] = useTransition();
-
   const [value, setValue] = useState("");
   const [first, setFirst] = useState(0);
   const [page, setPage] = useState(0);
