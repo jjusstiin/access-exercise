@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8af56d85e8dddbf5e75c05c1aa463669>>
+ * @generated SignedSource<<432c5971b6cec7bd5f42fac3259a35d9>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -10,35 +10,51 @@
 
 import { ConcreteRequest, Query } from 'relay-runtime';
 import { FragmentRefs } from "relay-runtime";
-export type ListPageQuery$variables = {};
-export type ListPageQuery$data = {
+export type ListPageRefetchQuery$variables = {
+  query?: string | null;
+};
+export type ListPageRefetchQuery$data = {
   readonly " $fragmentSpreads": FragmentRefs<"ListPageFragment">;
 };
-export type ListPageQuery = {
-  response: ListPageQuery$data;
-  variables: ListPageQuery$variables;
+export type ListPageRefetchQuery = {
+  response: ListPageRefetchQuery$data;
+  variables: ListPageRefetchQuery$variables;
 };
 
 const node: ConcreteRequest = (function(){
-var v0 = {
+var v0 = [
+  {
+    "defaultValue": "a",
+    "kind": "LocalArgument",
+    "name": "query"
+  }
+],
+v1 = {
+  "kind": "Variable",
+  "name": "query",
+  "variableName": "query"
+},
+v2 = {
   "alias": null,
   "args": null,
   "kind": "ScalarField",
   "name": "id",
   "storageKey": null
 },
-v1 = [
-  (v0/*: any*/)
+v3 = [
+  (v2/*: any*/)
 ];
 return {
   "fragment": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
-    "name": "ListPageQuery",
+    "name": "ListPageRefetchQuery",
     "selections": [
       {
-        "args": null,
+        "args": [
+          (v1/*: any*/)
+        ],
         "kind": "FragmentSpread",
         "name": "ListPageFragment"
       }
@@ -48,9 +64,9 @@ return {
   },
   "kind": "Request",
   "operation": {
-    "argumentDefinitions": [],
+    "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
-    "name": "ListPageQuery",
+    "name": "ListPageRefetchQuery",
     "selections": [
       {
         "alias": null,
@@ -60,11 +76,7 @@ return {
             "name": "first",
             "value": 100
           },
-          {
-            "kind": "Literal",
-            "name": "query",
-            "value": "a"
-          },
+          (v1/*: any*/),
           {
             "kind": "Literal",
             "name": "type",
@@ -106,7 +118,7 @@ return {
                   {
                     "kind": "InlineFragment",
                     "selections": [
-                      (v0/*: any*/),
+                      (v2/*: any*/),
                       {
                         "alias": null,
                         "args": null,
@@ -141,13 +153,13 @@ return {
                   },
                   {
                     "kind": "InlineFragment",
-                    "selections": (v1/*: any*/),
+                    "selections": (v3/*: any*/),
                     "type": "Organization",
                     "abstractKey": null
                   },
                   {
                     "kind": "InlineFragment",
-                    "selections": (v1/*: any*/),
+                    "selections": (v3/*: any*/),
                     "type": "Repository",
                     "abstractKey": null
                   }
@@ -158,21 +170,21 @@ return {
             "storageKey": null
           }
         ],
-        "storageKey": "search(first:100,query:\"a\",type:\"USER\")"
+        "storageKey": null
       }
     ]
   },
   "params": {
-    "cacheID": "cdbc75f5c7356ae1f04de1ba3690b4bd",
+    "cacheID": "2608c0dbedb9f3d10e8eadf3deea6434",
     "id": null,
     "metadata": {},
-    "name": "ListPageQuery",
+    "name": "ListPageRefetchQuery",
     "operationKind": "query",
-    "text": "query ListPageQuery {\n  ...ListPageFragment\n}\n\nfragment ListFragment on SearchResultItem {\n  __isSearchResultItem: __typename\n  ... on User {\n    id\n    isSiteAdmin\n    avatarUrl\n    login\n    url\n  }\n}\n\nfragment ListPageFragment on Query {\n  search(query: \"a\", type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query ListPageRefetchQuery(\n  $query: String = \"a\"\n) {\n  ...ListPageFragment_1Qr5xf\n}\n\nfragment ListFragment on SearchResultItem {\n  __isSearchResultItem: __typename\n  ... on User {\n    id\n    isSiteAdmin\n    avatarUrl\n    login\n    url\n  }\n}\n\nfragment ListPageFragment_1Qr5xf on Query {\n  search(query: $query, type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();
 
-(node as any).hash = "87e0e66bad29eff2857bce02f83d6661";
+(node as any).hash = "bafd871be70f7ff262caea94e0aac38c";
 
 export default node;
