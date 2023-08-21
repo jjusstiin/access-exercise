@@ -1,67 +1,67 @@
-import { zodResolver } from "@hookform/resolvers/zod";
-import { InputText } from "primereact/inputtext";
+import useUserStore from "../../stores/useUserStore";
+import defaultUserImage from "../../assets/images/default-user-image.png";
+import Admin from "../../component/Admin/Admin";
 import { Button } from "primereact/button";
-import { z } from "zod";
-import { commonStringRegex } from "../../helpers/helper";
-import { useForm } from "react-hook-form";
+import { Card } from "primereact/card";
+import { useNavigate } from "react-router-dom";
+import "./DetailPage.scss";
 
-const FormSchema = z.object({
-  userId: z
-    .string()
-    .regex(commonStringRegex, {
-      message: "請輸入正確帳號",
-    })
-    .min(1, {
-      message: "請輸入帳號",
-    }),
-  pwd: z
-    .string()
-    .regex(commonStringRegex, {
-      message: "密碼",
-    })
-    .min(1, {
-      message: "請輸入密碼",
-    }),
-});
-
-type FormSchemaType = z.infer<typeof FormSchema>;
-
-const DetailPage = (): JSX.Element => {
-  const { getValues } = useForm<FormSchemaType>({
-    defaultValues: {
-      userId: "",
-      pwd: "",
-    },
-    mode: "onChange",
-    resolver: zodResolver(FormSchema),
-  });
+export default function DetailPage() {
+  const navigate = useNavigate();
+  const { user } = useUserStore();
+  const data = user;
 
   return (
-    <form>
-      <div className="h-screen w-full flex justify-content-center align-items-center">
-        <div className="md:w-5 flex flex-column align-items-s justify-content-center gap-6 py-5">
-          <div className="flex flex-wrap justify-content-center align-items-center gap-2">
-            <label htmlFor="username" className="w-6rem">
-              Username
-            </label>
-            <InputText id="username" type="text" />
+    <div className="detail flex justify-content-center align-items-center">
+      <div className="mt-8">
+        <Card style={{ width: "350px" }}>
+          <div className="detail__top-card">
+            <img
+              alt=""
+              src={data?.avatarUrl ?? defaultUserImage}
+              className="detail__image"
+            />
+            <p>{data?.name}</p>
+            {data?.bio && <p>{data?.bio}</p>}
           </div>
-          <div className="flex flex-wrap justify-content-center align-items-center gap-2">
-            <label htmlFor="password" className="w-6rem">
-              Password
-            </label>
-            <InputText id="password" type="password" />
-          </div>
-          <Button
-            label="Login"
-            icon="pi pi-user"
-            className="w-10rem mx-auto"
-            type="submit"
-          ></Button>
-        </div>
+          <hr />
+          <p className="flex align-items-center">
+            <i
+              className="pi pi-user"
+              style={{ fontSize: "1.5rem", marginRight: "20px" }}
+            ></i>
+            <div>
+              <div className="detail__login">{data?.login}</div>
+              <Admin admin={data?.isSiteAdmin}></Admin>
+            </div>
+          </p>
+          {data?.location && (
+            <p className="flex align-items-center">
+              <i
+                className="pi pi-map-marker"
+                style={{ fontSize: "1.5rem", marginRight: "20px" }}
+              ></i>
+              <p>{data?.location}</p>
+            </p>
+          )}
+          {data?.websiteUrl && (
+            <p className="flex align-items-center">
+              <i
+                className="pi pi-link"
+                style={{ fontSize: "1.5rem", marginRight: "20px" }}
+              ></i>
+              <a
+                className="detail__website"
+                href={data?.websiteUrl ?? ""}
+                target="_blank"
+              >
+                {data?.websiteUrl}
+              </a>
+            </p>
+          )}
+        </Card>
+        <Button className="mt-3" label="Back" onClick={() => navigate(-1)} />
       </div>
-    </form>
+    </div>
   );
-};
-
-export default DetailPage;
+}

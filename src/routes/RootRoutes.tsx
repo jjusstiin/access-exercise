@@ -8,7 +8,7 @@ export const RootRoutes: RouteObject[] = [
     element: <ListPage />,
   },
   {
-    path: "login",
+    path: "detail",
     element: <DetailPage />,
   },
   {

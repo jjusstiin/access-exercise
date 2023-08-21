@@ -1,32 +1,31 @@
 import * as React from "react";
-import "./List.scss";
-import graphql from "babel-plugin-relay/macro";
-import { useFragment } from "react-relay";
-import type { ListFragment$key } from "./__generated__/ListFragment.graphql";
-import Admin from "./../Admin/Admin";
-import { Card } from "primereact/card";
 import defaultUserImage from "../../assets/images/default-user-image.png";
 import clsx from "clsx";
-
-const ListFragment = graphql`
-  fragment ListFragment on User {
-    id
-    isSiteAdmin
-    avatarUrl
-    login
-    url
-  }
-`;
+import Admin from "./../Admin/Admin";
+import { useFragment } from "react-relay";
+import { Card } from "primereact/card";
+import { ListFragment } from "./ListFragment";
+import type {
+  ListFragment$data,
+  ListFragment$key,
+} from "./__generated__/ListFragment.graphql";
+import "./List.scss";
 
 type Props = {
   node: ListFragment$key;
+  onClick: (data: ListFragment$data) => void;
 };
 
-export default function List({ node }: Props): React.ReactElement {
+export default function List({ node, onClick }: Props): React.ReactElement {
   const data = useFragment(ListFragment, node);
+
+  function handleUserDetail() {
+    onClick(data);
+  }
 
   return (
     <Card
+      onClick={handleUserDetail}
       className={clsx("page-card", {
         "page-card__available": data.login,
       })}

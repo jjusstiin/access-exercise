@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<94f9bcf12365e8fca41356df6c95d1ce>>
+ * @generated SignedSource<<452d3befb9068b7f048704f8464a5f79>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -140,7 +140,28 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "url",
+                        "name": "bio",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "location",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "websiteUrl",
                         "storageKey": null
                       }
                     ],
@@ -171,12 +192,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "3ec2f9c59415b813191199a55a41018e",
+    "cacheID": "36b27653260016938b3d7af749f48f1a",
     "id": null,
     "metadata": {},
     "name": "ListPageRefetchQuery",
     "operationKind": "query",
-    "text": "query ListPageRefetchQuery(\n  $query: String = \"a\"\n) {\n  ...ListPageFragment_1Qr5xf\n}\n\nfragment ListFragment on User {\n  id\n  isSiteAdmin\n  avatarUrl\n  login\n  url\n}\n\nfragment ListPageFragment_1Qr5xf on Query {\n  search(query: $query, type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query ListPageRefetchQuery(\n  $query: String = \"a\"\n) {\n  ...ListPageFragment_1Qr5xf\n}\n\nfragment ListFragment on User {\n  id\n  isSiteAdmin\n  avatarUrl\n  login\n  bio\n  location\n  name\n  websiteUrl\n}\n\nfragment ListPageFragment_1Qr5xf on Query {\n  search(query: $query, type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();

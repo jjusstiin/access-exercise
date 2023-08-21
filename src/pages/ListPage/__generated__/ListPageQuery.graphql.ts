@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<50b61522859386007017d5f1decdc5ab>>
+ * @generated SignedSource<<64d953ee03d4bf6689af5a1f0cf6494c>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -128,7 +128,28 @@ return {
                         "alias": null,
                         "args": null,
                         "kind": "ScalarField",
-                        "name": "url",
+                        "name": "bio",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "location",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "name",
+                        "storageKey": null
+                      },
+                      {
+                        "alias": null,
+                        "args": null,
+                        "kind": "ScalarField",
+                        "name": "websiteUrl",
                         "storageKey": null
                       }
                     ],
@@ -159,12 +180,12 @@ return {
     ]
   },
   "params": {
-    "cacheID": "de76c4363f0055429c507840b33adf24",
+    "cacheID": "8f00c9e134ee602895aafcb8baa88812",
     "id": null,
     "metadata": {},
     "name": "ListPageQuery",
     "operationKind": "query",
-    "text": "query ListPageQuery {\n  ...ListPageFragment\n}\n\nfragment ListFragment on User {\n  id\n  isSiteAdmin\n  avatarUrl\n  login\n  url\n}\n\nfragment ListPageFragment on Query {\n  search(query: \"a\", type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
+    "text": "query ListPageQuery {\n  ...ListPageFragment\n}\n\nfragment ListFragment on User {\n  id\n  isSiteAdmin\n  avatarUrl\n  login\n  bio\n  location\n  name\n  websiteUrl\n}\n\nfragment ListPageFragment on Query {\n  search(query: \"a\", type: USER, first: 100) {\n    edges {\n      node {\n        __typename\n        ...ListFragment\n        ... on Organization {\n          id\n        }\n        ... on Repository {\n          id\n        }\n        ... on User {\n          id\n        }\n      }\n    }\n  }\n}\n"
   }
 };
 })();

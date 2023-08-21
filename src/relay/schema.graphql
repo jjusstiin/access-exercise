@@ -3,7 +3,10 @@ type User {
   isSiteAdmin: Boolean!
   avatarUrl: String
   login: String!
-  url: String
+  bio:String
+  location:String
+  name:String
+  websiteUrl:String
 }
 
 type Repository {

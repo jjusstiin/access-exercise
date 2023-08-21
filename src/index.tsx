@@ -20,7 +20,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <RelayEnvironmentProvider environment={RelayEnvironment}>
     <React.StrictMode>
-      <App />
+      <React.Suspense>
+        <App />
+      </React.Suspense>
     </React.StrictMode>
   </RelayEnvironmentProvider>
 );

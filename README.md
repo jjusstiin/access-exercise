@@ -2,6 +2,14 @@
 
 先申請個人訪問Token取代
 
+[Token超連結](
+https://github.com/settings/tokens?type=beta)
+
+[Github 申請Token教學](
+https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
+)
+
+
 `/src/relay/RelayEnvironment.ts`
 
 
@@ -10,15 +18,23 @@ Authorization:"bearer `(Your Token)`"
 ```
 
 ```sh
+npm i
 npm run dev
 ```
 
-[Token超連結](
-https://github.com/settings/tokens)
+## GitHub API
 
-[Github 申請Token教學](
-https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens
-)
+設定 Github API
+
+ `/src/relay/RelayEnvironment.ts`
+```ts
+const HTTP_ENDPOINT = "https://api.github.com/graphql";
+```
+
+[Github API](https://api.github.com/)
+
+
+[Github Api Explorer](https://docs.github.com/en/graphql/overview/explorer)
 
 ## Relay專案建置
 
@@ -38,6 +54,27 @@ npm create @tobiastengler/relay-app
 
 ```json
 "schema": "./src/relay/schema.graphql",
+```
+
+index.tsx 設定
+
+`React.Suspense` 處理異步加載
+>DetailPage refresh 回到 ListPage 就是少了這個出現錯誤畫面
+
+```ts
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
+root.render(
+  <RelayEnvironmentProvider environment={RelayEnvironment}>
+    <React.StrictMode>
+      <React.Suspense>
+        <App />
+      </React.Suspense>
+    </React.StrictMode>
+  </RelayEnvironmentProvider>
+);
+
 ```
 
 ## 1. graphql
@@ -368,6 +405,12 @@ function handleSearchChange(e: ChangeEvent<HTMLInputElement>) {
   }
   ```
 
+## 錯誤紀錄
+
+我嘗試在 ListPage (父階) 將 graphql 結果 data (fragment 型別資料) 存入 store， 並切換路徑 `/detail` ，資料取出後用 `useFragment` 使用資料，資料可以使用，但在重新整理後，將沒有 api 被呼叫，useFragment 無法解析出已不存在 api 資料。
+
+解決方法：在 list component 中，將已經 useFragment 的資 料，非 fragment 資料型別存入 store，可能有更好的解決方式，或是 relay 有對其解決方式需要再研究。 
+
 ## on解釋
 
 ```graphql
@@ -417,17 +460,6 @@ fragment AdminFragment on Admin {
 
 [Relay Code Exercise 官網使用 newsfeed 練習](https://github.com/facebook/relay)
 
-## GitHub API
-
-設定 Github API
-
- `/src/relay/RelayEnvironment.ts`
-```ts
-const HTTP_ENDPOINT = "https://api.github.com/graphql";
-```
-
-[GitHub API](https://api.github.com/)
-
 ## 其他套件
 
 ```sh
@@ -437,6 +469,8 @@ npm install primeicons
 npm install primeflex
 npm install sass
 npm install clsx
+npm install zustand
+npm install @types/lodash.debounce
 ```
 
 PrimeReact `index.tsx` import css 
